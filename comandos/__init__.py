@@ -1,2 +1,4 @@
 from . import admin
-__all__ = ["admin"]
+from . import rangos
+
+__all__ = ["admin", "rangos"]
