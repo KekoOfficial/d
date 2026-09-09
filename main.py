@@ -9,8 +9,9 @@ from utils.logger import Logger
 bot = setup_bot()
 
 async def cargar_modulos():
-    from comandos import admin
+    from comandos import admin, rangos
     await admin.setup(bot)
+    await rangos.setup(bot)
     Logger.exito("Módulos cargados")
 
 @bot.event
