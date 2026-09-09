@@ -1,0 +1,29 @@
+{
+  "prefijo": "kr!",
+  "idioma_predeterminado": "es",
+  "rangos_base": {
+    "💜 Owner": "#9932CC",
+    "🛡️ Admin-Discord": "#4B0082",
+    "🎮 Admin-Videojuegos": "#E63946",
+    "⚖️ Moderador": "#4169E1",
+    "📚 Staff": "#708090",
+    "⭐ Youtuber": "#FF0000",
+    "✅ Verificado": "#00FF00",
+    "👤 Miembro": "#808080"
+  },
+  "rangos_juegos": {
+    "🎮 Roblox": "#E63946",
+    "⛏️ Minecraft": "#00AF54",
+    "🔫 Free Fire": "#FF6B35"
+  },
+  "idiomas": {
+    "🇪🇸 Español": "#FF0000",
+    "🇺🇸 English": "#0000FF",
+    "🇸🇦 العربية": "#008000"
+  },
+  "niveles": {
+    "max_nivel": 10,
+    "dias_para_subir": 90,
+    "xp_por_mensaje": 5
+  }
+}
