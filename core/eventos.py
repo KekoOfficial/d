@@ -1,4 +1,4 @@
-from .sistemas.sincronizacion import sincronizar_rangos
+from sistemas.sincronizacion import sincronizar_rangos
 from utils.logger import Logger
 from datetime import datetime
 
