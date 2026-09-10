@@ -1,16 +1,28 @@
 import discord
 from utils.logger import Logger
 from config.config import cargar_config
-from database.database import BaseDatos
 
 cfg = cargar_config()
 estructura = cfg["canales"]["estructura"]
 
-def registrar_canal_creado(nombre):
-    datos = BaseDatos.leer("bot_canales.json", {"creados_por_bot": []})
-    if nombre not in datos["creados_por_bot"]:
-        datos["creados_por_bot"].append(nombre)
-        BaseDatos.guardar("bot_canales.json", datos)
+def obtener_todos_nombres_esperados():
+    """Obtiene todos los nombres de categorías y canales que DEBEN existir"""
+    esperados = set()
+    
+    for cat_data in estructura:
+        cat_nombre = cat_data["categoria"]
+        esperados.add(cat_nombre)
+        
+        if "canales" in cat_data:
+            for canal in cat_data["canales"]:
+                esperados.add(canal["nombre"])
+        
+        if "canales_por_juego" in cat_data:
+            for juego in cat_data["canales_por_juego"]:
+                for canal in juego["canales"]:
+                    esperados.add(canal["nombre"])
+    
+    return esperados
 
 def obtener_permisos_desde_acceso(guild, acceso):
     everyone = guild.default_role
@@ -41,9 +53,47 @@ async def sincronizar_canales(guild):
     Logger.info("🔍 Sincronizando categorías y canales...")
     
     creados = 0
-    existentes = {c.name: c for c in guild.channels}
+    eliminados = 0
+    esperados = obtener_todos_nombres_esperados()
+    
+    # Obtener canales y categorías existentes
+    todos_canales = list(guild.channels)
     everyone = guild.default_role
 
+    # ── PASO 1: Eliminar TODO lo que NO está en config ──
+    Logger.info("🔍 Eliminando canales y categorías que no están en la configuración...")
+    for canal in todos_canales:
+        if canal.name not in esperados:
+            # No eliminar si está arriba del rol del bot
+            if isinstance(canal, discord.CategoryChannel):
+                # Verificar si hay canales dentro que no se puedan eliminar
+                puede_eliminar = True
+                for _ in canal.channels:
+                    if _.position >= guild.me.top_role.position:
+                        puede_eliminar = False
+                        break
+                if puede_eliminar and canal.position < guild.me.top_role.position:
+                    try:
+                        await canal.delete()
+                        Logger.exito(f"🗑️ Eliminada categoría: {canal.name}")
+                        eliminados += 1
+                    except Exception as e:
+                        Logger.info(f"⚠️ No se pudo eliminar {canal.name}: {e}")
+            else:
+                if canal.position < guild.me.top_role.position:
+                    try:
+                        await canal.delete()
+                        Logger.exito(f"🗑️ Eliminado canal: {canal.name}")
+                        eliminados += 1
+                    except Exception as e:
+                        Logger.info(f"⚠️ No se pudo eliminar {canal.name}: {e}")
+
+    # Esperar un momento para que Discord actualice
+    import asyncio
+    await asyncio.sleep(0.5)
+
+    # ── PASO 2: Crear categorías y canales desde cero según config ──
+    Logger.info("🔍 Creando estructura desde configuración...")
     for cat_data in estructura:
         cat_nombre = cat_data["categoria"]
         posicion = cat_data.get("posicion", 0)
@@ -58,23 +108,22 @@ async def sincronizar_canales(guild):
                 overwrites=permisos_categoria,
                 position=posicion
             )
-            registrar_canal_creado(cat_nombre)
             Logger.exito(f"📂 CREADA CATEGORÍA: {cat_nombre}")
-            Logger.info(f"   ↳ Permisos aplicados ✅")
             creados += 1
         else:
             try:
                 await categoria.edit(overwrites=permisos_categoria)
-                Logger.info(f"📂 {cat_nombre} — permisos actualizados ✅")
+                Logger.info(f"📂 {cat_nombre} — configurada ✅")
             except Exception as e:
-                Logger.info(f"⚠️ No se pudieron actualizar permisos de {cat_nombre}: {e}")
+                Logger.info(f"⚠️ No se pudo configurar {cat_nombre}: {e}")
 
         if "canales" in cat_data:
             for canal_info in cat_data["canales"]:
                 nombre_canal = canal_info["nombre"]
                 tipo = canal_info["tipo"]
                 
-                if nombre_canal not in existentes:
+                existe = discord.utils.get(guild.channels, name=nombre_canal)
+                if not existe:
                     if tipo == "text":
                         await guild.create_text_channel(
                             nombre_canal,
@@ -87,7 +136,6 @@ async def sincronizar_canales(guild):
                             category=categoria,
                             overwrites=permisos_categoria
                         )
-                    registrar_canal_creado(nombre_canal)
                     Logger.exito(f"  ✅ {nombre_canal}")
                     creados += 1
 
@@ -111,7 +159,8 @@ async def sincronizar_canales(guild):
                     nombre_canal = canal_info["nombre"]
                     tipo = canal_info["tipo"]
                     
-                    if nombre_canal not in existentes:
+                    existe = discord.utils.get(guild.channels, name=nombre_canal)
+                    if not existe:
                         if tipo == "text":
                             await guild.create_text_channel(
                                 nombre_canal,
@@ -124,11 +173,10 @@ async def sincronizar_canales(guild):
                                 category=categoria,
                                 overwrites=permisos_juego
                             )
-                        registrar_canal_creado(nombre_canal)
                         Logger.exito(f"  ✅ {nombre_canal} [Solo: {nombre_rango}]")
                         creados += 1
 
     Logger.info("════════════════════════════")
-    Logger.info(f"📊 Total canales/categorías creados: {creados}")
-    Logger.info("✅ Permisos aplicados a todo ✅\n")
+    Logger.info(f"📊 Eliminados: {eliminados} | Creados: {creados}")
+    Logger.info("✅ Servidor configurado completamente por el bot\n")
     return creados
