@@ -1,17 +1,23 @@
-import discord
-from utils.embeds import Embed
 from config.config import cargar_config
 
 cfg = cargar_config()
-divisiones = cfg["divisiones"]
 
 async def setup(bot):
     @bot.command(name="rango_lista")
     async def rango_lista(ctx):
-        # Enviamos cada división por separado
-        for div_nombre, data in divisiones.items():
-            auto = " ✅ [ELEGIBLE]" if data.get("autoasignable", False) else " 🔒 [SOLO EQUIPO]"
-            texto = f"**═══ {div_nombre} {auto} ═══**\n"
-            for nombre in data["rangos"]:
-                texto += f"├ {nombre}\n"
-            await ctx.send(texto)
+        jerarquia = cfg["rangos"]["jerarquia"]
+        colores = cfg["rangos"]["colores"]
+        
+        # Dividimos en mensajes más cortos para no exceder el límite de Discord
+        mensaje = "**👑 LISTA DE RANGOS — KR EMPIRE**\n\n"
+        
+        for nombre in jerarquia:
+            linea = f"{nombre} — `{colores.get(nombre, '#808080')}`\n"
+            # Si se hace muy largo, enviamos y empezamos uno nuevo
+            if len(mensaje) + len(linea) > 1800:
+                await ctx.send(mensaje)
+                mensaje = ""
+            mensaje += linea
+        
+        if mensaje:
+            await ctx.send(mensaje)
