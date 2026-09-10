@@ -13,11 +13,9 @@ def registrar_canal_creado(nombre):
         BaseDatos.guardar("bot_canales.json", datos)
 
 def obtener_permisos_desde_acceso(guild, acceso):
-    """Devuelve los permisos correctos según la configuración de 'acceso'"""
     everyone = guild.default_role
     permisos = {}
 
-    # Configuración para @everyone
     ver_todos = acceso.get("todos_pueden_ver", True)
     escribir_todos = acceso.get("todos_pueden_escribir", True)
     solo_rango = acceso.get("solo_rango_especifico")
@@ -28,7 +26,6 @@ def obtener_permisos_desde_acceso(guild, acceso):
         read_message_history=ver_todos
     )
 
-    # Si hay un rango específico que puede ver
     if solo_rango:
         rol = discord.utils.get(guild.roles, name=solo_rango)
         if rol:
@@ -45,13 +42,13 @@ async def sincronizar_canales(guild):
     
     creados = 0
     existentes = {c.name: c for c in guild.channels}
+    everyone = guild.default_role  # ✅ Definido una sola vez aquí
 
     for cat_data in estructura:
         cat_nombre = cat_data["categoria"]
         posicion = cat_data.get("posicion", 0)
         acceso = cat_data.get("acceso", {})
 
-        # ── Crear o buscar CATEGORÍA con sus permisos ──
         categoria = discord.utils.get(guild.categories, name=cat_nombre)
         permisos_categoria = obtener_permisos_desde_acceso(guild, acceso)
         
@@ -66,14 +63,12 @@ async def sincronizar_canales(guild):
             Logger.info(f"   ↳ Permisos aplicados ✅")
             creados += 1
         else:
-            # Actualizar permisos si la categoría ya existe
             try:
                 await categoria.edit(overwrites=permisos_categoria)
                 Logger.info(f"📂 {cat_nombre} — permisos actualizados ✅")
             except Exception as e:
                 Logger.warning(f"⚠️ No se pudieron actualizar permisos de {cat_nombre}: {e}")
 
-        # ── Canales simples dentro de la categoría ──
         if "canales" in cat_data:
             for canal_info in cat_data["canales"]:
                 nombre_canal = canal_info["nombre"]
@@ -96,13 +91,12 @@ async def sincronizar_canales(guild):
                     Logger.exito(f"  ✅ {nombre_canal}")
                     creados += 1
 
-        # ── Canales PRIVADOS por JUEGO ──
         if "canales_por_juego" in cat_data:
             for juego in cat_data["canales_por_juego"]:
                 nombre_rango = juego["nombre_rango"]
                 rol = discord.utils.get(guild.roles, name=nombre_rango)
                 
-                # Permisos: Nadie lo ve EXCEPTO quien tenga el rango del juego
+                # ✅ Ahora everyone SÍ está definido aquí
                 permisos_juego = {everyone: discord.PermissionOverwrite(view_channel=False)}
                 if rol:
                     permisos_juego[rol] = discord.PermissionOverwrite(
