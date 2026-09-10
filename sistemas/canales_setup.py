@@ -42,7 +42,7 @@ async def sincronizar_canales(guild):
     
     creados = 0
     existentes = {c.name: c for c in guild.channels}
-    everyone = guild.default_role  # ✅ Definido una sola vez aquí
+    everyone = guild.default_role
 
     for cat_data in estructura:
         cat_nombre = cat_data["categoria"]
@@ -67,7 +67,7 @@ async def sincronizar_canales(guild):
                 await categoria.edit(overwrites=permisos_categoria)
                 Logger.info(f"📂 {cat_nombre} — permisos actualizados ✅")
             except Exception as e:
-                Logger.warning(f"⚠️ No se pudieron actualizar permisos de {cat_nombre}: {e}")
+                Logger.info(f"⚠️ No se pudieron actualizar permisos de {cat_nombre}: {e}")
 
         if "canales" in cat_data:
             for canal_info in cat_data["canales"]:
@@ -96,7 +96,6 @@ async def sincronizar_canales(guild):
                 nombre_rango = juego["nombre_rango"]
                 rol = discord.utils.get(guild.roles, name=nombre_rango)
                 
-                # ✅ Ahora everyone SÍ está definido aquí
                 permisos_juego = {everyone: discord.PermissionOverwrite(view_channel=False)}
                 if rol:
                     permisos_juego[rol] = discord.PermissionOverwrite(
@@ -106,7 +105,7 @@ async def sincronizar_canales(guild):
                     )
                     Logger.info(f"   ↳ Canal privado para: {nombre_rango}")
                 else:
-                    Logger.warning(f"   ⚠️ Rango '{nombre_rango}' no encontrado. Crea el rango primero con kr!up")
+                    Logger.info(f"   ⚠️ Rango '{nombre_rango}' no encontrado. Crea el rango primero con kr!up")
 
                 for canal_info in juego["canales"]:
                     nombre_canal = canal_info["nombre"]
