@@ -1,0 +1,199 @@
+{
+  "permisos_por_rango": {
+    "👑 Fundador": {
+      "administrar_servidor": true,
+      "administrar_canales": true,
+      "administrar_roles": true,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true,
+      "ban_miembros": true,
+      "expulsar_miembros": true
+    },
+    "🏆 Creador": {
+      "administrar_servidor": true,
+      "administrar_canales": true,
+      "administrar_roles": true,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true
+    },
+    "💜 Co-Fundador": {
+      "administrar_servidor": false,
+      "administrar_canales": true,
+      "administrar_roles": false,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true
+    },
+    "🛡️ Owner": {
+      "administrar_servidor": true,
+      "administrar_canales": true,
+      "administrar_roles": true,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true
+    },
+    "🏛️ Director": {
+      "administrar_servidor": false,
+      "administrar_canales": true,
+      "administrar_roles": true,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true
+    },
+    "🧠 Coordinador": {
+      "administrar_servidor": false,
+      "administrar_canales": true,
+      "administrar_roles": false,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": false
+    },
+    "🔐 Seguridad": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true
+    },
+    "🤖 Admin de Bots": {
+      "administrar_servidor": false,
+      "administrar_canales": true,
+      "administrar_roles": false,
+      "moderar_miembros": false,
+      "gestionar_mensajes": false,
+      "ver_registro_auditoria": false
+    },
+    "⚖️ Moderador Senior": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true
+    },
+    "🛡️ Moderador": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": false
+    },
+    "🔨 Moderador Junior": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": false
+    },
+    "🚨 Anti-Raid": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": true,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": true
+    },
+    "🕵️ Investigador": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": false,
+      "gestionar_mensajes": false,
+      "ver_registro_auditoria": true
+    },
+    "🎫 Atención": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": false,
+      "gestionar_mensajes": false,
+      "ver_registro_auditoria": false
+    },
+    "🧰 Soporte Técnico": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": false,
+      "gestionar_mensajes": false,
+      "ver_registro_auditoria": false
+    },
+    "📣 Community Manager": {
+      "administrar_servidor": false,
+      "administrar_canales": true,
+      "administrar_roles": false,
+      "moderar_miembros": false,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": false
+    },
+    "🎉 Organizador": {
+      "administrar_servidor": false,
+      "administrar_canales": true,
+      "administrar_roles": false,
+      "moderar_miembros": false,
+      "gestionar_mensajes": true,
+      "ver_registro_auditoria": false
+    },
+    "🎤 Host de Eventos": {
+      "administrar_servidor": false,
+      "administrar_canales": false,
+      "administrar_roles": false,
+      "moderar_miembros": false,
+      "gestionar_mensajes": false,
+      "ver_registro_auditoria": false
+    },
+    "💎 VIP": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "🏅 Veterano": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "🌟 Leyenda": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "🔥 Miembro Activo": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "💜 Miembro OG": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "🏆 Campeón de Evento": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "🎖️ Miembro Honorífico": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "⭐ Creador de Contenido": {
+      "ver_canales": true,
+      "enviar_mensajes": true,
+      "transmitir_en_vivo": true
+    },
+    "✅ Verificado": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "🌱 Recién Llegado": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "👤 Miembro": {
+      "ver_canales": true,
+      "enviar_mensajes": true
+    },
+    "🤖 Bots": {
+      "ver_canales": true,
+      "enviar_mensajes": false
+    }
+  }
+}
