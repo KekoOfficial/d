@@ -18,7 +18,7 @@ def es_rango_del_bot(nombre):
 async def sincronizar_rangos(guild):
     Logger.info("🔍 Sincronizando rangos...")
     
-    jerarquia = cfg["rangos"]["jerarquia"]  # 🔝 El primero = más arriba
+    jerarquia = cfg["rangos"]["jerarquia"]
     colores = cfg["rangos"]["colores"]
     existentes = {rol.name: rol for rol in guild.roles}
     
@@ -26,7 +26,7 @@ async def sincronizar_rangos(guild):
     actualizados = 0
     eliminados = 0
 
-    # ── PASO 1: Crear y actualizar colores ──
+    # ── PASO 1: Crear o restaurar rangos que faltan ──
     for nombre in jerarquia:
         color_hex = colores.get(nombre, "#808080")
         
@@ -34,11 +34,12 @@ async def sincronizar_rangos(guild):
             try:
                 await guild.create_role(name=nombre, color=int(color_hex.lstrip('#'), 16))
                 registrar_rango_creado(nombre)
-                Logger.exito(f"✅ Creado: {nombre}")
+                Logger.exito(f"✅ CREADO/RESTAURADO: {nombre}")
                 creados += 1
             except Exception as e:
                 Logger.error(f"❌ No se pudo crear {nombre}: {e}")
         else:
+            # Si ya existe, solo actualizar color si hace falta
             rol = existentes[nombre]
             if str(rol.color) != color_hex:
                 try:
@@ -48,23 +49,20 @@ async def sincronizar_rangos(guild):
                 except:
                     pass
 
-    # ── PASO 2: ORDENAR JERÁRQUICAMENTE ──
+    # ── PASO 2: Ordenar jerarquía ──
     Logger.info("🔄 Organizando jerarquía...")
     posiciones = {}
     for indice, nombre in enumerate(jerarquia):
         if nombre in existentes:
-            # El primero de la lista = posición más alta
-            # Usamos índice negativo para que el primero quede arriba
             posiciones[existentes[nombre]] = len(jerarquia) - indice
     
     try:
         await guild.edit_role_positions(positions=posiciones)
-        Logger.exito(f"✅ Rangos ordenados correctamente")
+        Logger.exito(f"✅ Rangos ordenados")
     except Exception as e:
-        Logger.error(f"⚠️ No se pudo ordenar: {e}")
-        Logger.info("💡 Asegúrate de que el rol del bot esté arriba en Configuración → Roles")
+        Logger.warning(f"⚠️ No se pudo ordenar: {e}")
 
-    # ── PASO 3: Eliminar rangos que ya no están ──
+    # ── PASO 3: Eliminar solo lo que ya NO está en config ──
     for nombre, rol in existentes.items():
         if es_rango_del_bot(nombre) and nombre not in jerarquia:
             try:
@@ -76,6 +74,5 @@ async def sincronizar_rangos(guild):
                 Logger.error(f"❌ No se pudo eliminar {nombre}: {e}")
 
     Logger.info("════════════════════════════")
-    Logger.info(f"📊 Creados: {creados}, Actualizados: {actualizados}, Eliminados: {eliminados}")
-    Logger.info(f"📋 Orden: 👑 Arriba = Fundador | Abajo = Miembro ✅")
+    Logger.info(f"📊 Creados/Restaurados: {creados} | Actualizados: {actualizados} | Eliminados: {eliminados}")
     return creados, actualizados, eliminados
