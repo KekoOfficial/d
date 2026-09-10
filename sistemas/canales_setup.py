@@ -65,9 +65,9 @@ async def sincronizar_canales(guild):
         # Canales simples
         if "canales" in cat_data:
             for canal in cat_data["canales"]:
-                nombre = canal["nombre"]
+                nombre_canal = canal["nombre"]
                 tipo = canal["tipo"]
-                if nombre not in existentes:
+                if nombre_canal not in existentes:
                     permisos_canal = obtener_permisos(
                         guild,
                         ver=cat_data["permisos_base"].get("ver", True),
@@ -75,11 +75,11 @@ async def sincronizar_canales(guild):
                         requiere_rango=cat_data.get("requiere_rango")
                     )
                     if tipo == "text":
-                        await guild.create_text_channel(name, category=categoria, overwrites=permisos_canal)
+                        await guild.create_text_channel(nombre_canal, category=categoria, overwrites=permisos_canal)
                     else:
-                        await guild.create_voice_channel(name, category=categoria, overwrites=permisos_canal)
-                    registrar_canal_creado(nombre)
-                    Logger.exito(f"  ✅ {nombre}")
+                        await guild.create_voice_channel(nombre_canal, category=categoria, overwrites=permisos_canal)
+                    registrar_canal_creado(nombre_canal)
+                    Logger.exito(f"  ✅ {nombre_canal}")
                     creados += 1
 
         # Subcanales privados por juego
@@ -88,15 +88,15 @@ async def sincronizar_canales(guild):
                 req_rango = datos_juego.get("requiere_rango")
                 permisos_juego = obtener_permisos(guild, ver=False, hablar=False, requiere_rango=req_rango)
                 for canal in datos_juego["canales"]:
-                    nombre = canal["nombre"]
+                    nombre_canal = canal["nombre"]
                     tipo = canal["tipo"]
-                    if nombre not in existentes:
+                    if nombre_canal not in existentes:
                         if tipo == "text":
-                            await guild.create_text_channel(nombre, category=categoria, overwrites=permisos_juego)
+                            await guild.create_text_channel(nombre_canal, category=categoria, overwrites=permisos_juego)
                         else:
-                            await guild.create_voice_channel(nombre, category=categoria, overwrites=permisos_juego)
-                        registrar_canal_creado(nombre)
-                        Logger.exito(f"  ✅ {nombre}")
+                            await guild.create_voice_channel(nombre_canal, category=categoria, overwrites=permisos_juego)
+                        registrar_canal_creado(nombre_canal)
+                        Logger.exito(f"  ✅ {nombre_canal}")
                         creados += 1
 
     Logger.info("════════════════════════════")
