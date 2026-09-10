@@ -1,107 +1,284 @@
-    "🎮｜ZONA DE JUEGOS": {
-      "tipo": "category",
-      "permisos_base": {
-        "ver": false,
-        "hablar": false
+{
+  "prefijo": "kr!",
+  "dueno_id": "PON_TU_ID_AQUI",
+  "idioma_predeterminado": "es",
+
+  "rangos": {
+    "jerarquia": [
+      "👑 Fundador",
+      "🏆 Creador",
+      "💜 Co-Fundador",
+      "🛡️ Owner",
+      "🏛️ Director",
+      "🧠 Coordinador",
+      "🔐 Seguridad",
+      "🤖 Admin de Bots",
+      "⚖️ Moderador Senior",
+      "🛡️ Moderador",
+      "🔨 Moderador Junior",
+      "🚨 Anti-Raid",
+      "🕵️ Investigador",
+      "🎫 Atención",
+      "🧰 Soporte Técnico",
+      "📣 Community Manager",
+      "🎉 Organizador",
+      "🎤 Host de Eventos",
+      "💎 VIP",
+      "🏅 Veterano",
+      "🌟 Leyenda",
+      "🔥 Miembro Activo",
+      "💜 Miembro OG",
+      "🏆 Campeón de Evento",
+      "🎖️ Miembro Honorífico",
+      "⭐ Creador de Contenido",
+      "✅ Verificado",
+      "🌱 Recién Llegado",
+      "👤 Miembro",
+      "🤖 Bots"
+    ],
+
+    "colores": {
+      "👑 Fundador": "#FFD700",
+      "🏆 Creador": "#FFB800",
+      "💜 Co-Fundador": "#C084FC",
+      "🛡️ Owner": "#9932CC",
+      "🏛️ Director": "#D4AF37",
+      "🧠 Coordinador": "#4B0082",
+      "🔐 Seguridad": "#DC143C",
+      "🤖 Admin de Bots": "#4169E1",
+      "⚖️ Moderador Senior": "#1E40AF",
+      "🛡️ Moderador": "#4169E1",
+      "🔨 Moderador Junior": "#60A5FA",
+      "🚨 Anti-Raid": "#EF4444",
+      "🕵️ Investigador": "#8B5CF6",
+      "🎫 Atención": "#22C55E",
+      "🧰 Soporte Técnico": "#06B6D4",
+      "📣 Community Manager": "#F59E0B",
+      "🎉 Organizador": "#EC4899",
+      "🎤 Host de Eventos": "#F97316",
+      "💎 VIP": "#00D9FF",
+      "🏅 Veterano": "#CD7F32",
+      "🌟 Leyenda": "#FFD700",
+      "🔥 Miembro Activo": "#FF6B35",
+      "💜 Miembro OG": "#C084FC",
+      "🏆 Campeón de Evento": "#FFA500",
+      "🎖️ Miembro Honorífico": "#EAB308",
+      "⭐ Creador de Contenido": "#FF0000",
+      "✅ Verificado": "#10B981",
+      "🌱 Recién Llegado": "#9CA3AF",
+      "👤 Miembro": "#808080",
+      "🤖 Bots": "#708090"
+    },
+
+    "permisos_por_rango": {
+      "👑 Fundador": {
+        "administrar_servidor": true,
+        "administrar_canales": true,
+        "administrar_roles": true,
+        "moderar_miembros": true,
+        "gestionar_mensajes": true,
+        "ver_canales_privados": true,
+        "comandos_admin": true
       },
-      "subcanales": {
-        "🎮 Roblox": {
-          "requiere_rango": "🎮 Roblox",
-          "canales": [
-            {"nombre": "💬｜chat-roblox", "tipo": "text"},
-            {"nombre": "🎤｜voz-roblox", "tipo": "voice"}
-          ]
-        },
-        "⛏️ Minecraft": {
-          "requiere_rango": "⛏️ Minecraft",
-          "canales": [
-            {"nombre": "💬｜chat-minecraft", "tipo": "text"},
-            {"nombre": "🎤｜voz-minecraft", "tipo": "voice"}
-          ]
-        },
-        "🔫 Free Fire": {
-          "requiere_rango": "🔫 Free Fire",
-          "canales": [
-            {"nombre": "💬｜chat-freefire", "tipo": "text"},
-            {"nombre": "🎤｜voz-ff", "tipo": "voice"}
-          ]
-        },
-        "🎯 Fortnite": {
-          "requiere_rango": "🎯 Fortnite",
-          "canales": [
-            {"nombre": "💬｜chat-fortnite", "tipo": "text"},
-            {"nombre": "🎤｜voz-fortnite", "tipo": "voice"}
-          ]
-        },
-        "🎲 Genshin Impact": {
-          "requiere_rango": "🎲 Genshin Impact",
-          "canales": [
-            {"nombre": "💬｜chat-genshin", "tipo": "text"},
-            {"nombre": "🎤｜voz-genshin", "tipo": "voice"}
-          ]
-        },
-        "🚀 Valorant": {
-          "requiere_rango": "🚀 Valorant",
-          "canales": [
-            {"nombre": "💬｜chat-valorant", "tipo": "text"},
-            {"nombre": "🎤｜voz-valorant", "tipo": "voice"}
-          ]
-        },
-        "⚔️ League of Legends": {
-          "requiere_rango": "⚔️ League of Legends",
-          "canales": [
-            {"nombre": "💬｜chat-lol", "tipo": "text"},
-            {"nombre": "🎤｜voz-lol", "tipo": "voice"}
-          ]
-        },
-        "🏎️ GTA V": {
-          "requiere_rango": "🏎️ GTA V",
-          "canales": [
-            {"nombre": "💬｜chat-gta", "tipo": "text"},
-            {"nombre": "🎤｜voz-gta", "tipo": "voice"}
-          ]
-        },
-        "⚔️ Brawl Stars": {
-          "requiere_rango": "⚔️ Brawl Stars",
-          "canales": [
-            {"nombre": "💬｜chat-brawl", "tipo": "text"},
-            {"nombre": "🎤｜voz-brawl", "tipo": "voice"}
-          ]
-        },
-        "🔫 PUBG": {
-          "requiere_rango": "🔫 PUBG",
-          "canales": [
-            {"nombre": "💬｜chat-pubg", "tipo": "text"},
-            {"nombre": "🎤｜voz-pubg", "tipo": "voice"}
-          ]
-        },
-        "⚽ eFootball": {
-          "requiere_rango": "⚽ eFootball",
-          "canales": [
-            {"nombre": "💬｜chat-futbol", "tipo": "text"},
-            {"nombre": "🎤｜voz-futbol", "tipo": "voice"}
-          ]
-        },
-        "🔄 Apex Legends": {
-          "requiere_rango": "🔄 Apex Legends",
-          "canales": [
-            {"nombre": "💬｜chat-apex", "tipo": "text"},
-            {"nombre": "🎤｜voz-apex", "tipo": "voice"}
-          ]
-        },
-        "🐉 Elden Ring": {
-          "requiere_rango": "🐉 Elden Ring",
-          "canales": [
-            {"nombre": "💬｜chat-eldenring", "tipo": "text"},
-            {"nombre": "🎤｜voz-eldenring", "tipo": "voice"}
-          ]
-        },
-        "🏹 Overwatch": {
-          "requiere_rango": "🏹 Overwatch",
-          "canales": [
-            {"nombre": "💬｜chat-overwatch", "tipo": "text"},
-            {"nombre": "🎤｜voz-overwatch", "tipo": "voice"}
-          ]
-        }
+      "🏆 Creador": {
+        "administrar_servidor": true,
+        "administrar_canales": true,
+        "administrar_roles": true,
+        "moderar_miembros": true,
+        "gestionar_mensajes": true,
+        "ver_canales_privados": true,
+        "comandos_admin": true
+      },
+      "💜 Co-Fundador": {
+        "administrar_servidor": false,
+        "administrar_canales": true,
+        "administrar_roles": false,
+        "moderar_miembros": true,
+        "gestionar_mensajes": true,
+        "ver_canales_privados": true,
+        "comandos_admin": true
+      },
+      "🛡️ Owner": {
+        "administrar_servidor": true,
+        "administrar_canales": true,
+        "administrar_roles": true,
+        "moderar_miembros": true,
+        "gestionar_mensajes": true,
+        "ver_canales_privados": true,
+        "comandos_admin": true
+      },
+      "🏛️ Director": {
+        "administrar_servidor": false,
+        "administrar_canales": true,
+        "administrar_roles": true,
+        "moderar_miembros": true,
+        "gestionar_mensajes": true,
+        "ver_canales_privados": true,
+        "comandos_admin": true
+      },
+      "⚖️ Moderador Senior": {
+        "administrar_servidor": false,
+        "administrar_canales": false,
+        "administrar_roles": false,
+        "moderar_miembros": true,
+        "gestionar_mensajes": true,
+        "ver_canales_privados": true,
+        "comandos_admin": false
+      },
+      "🛡️ Moderador": {
+        "administrar_servidor": false,
+        "administrar_canales": false,
+        "administrar_roles": false,
+        "moderar_miembros": true,
+        "gestionar_mensajes": true,
+        "ver_canales_privados": true,
+        "comandos_admin": false
+      },
+      "🧰 Soporte Técnico": {
+        "administrar_servidor": false,
+        "administrar_canales": false,
+        "administrar_roles": false,
+        "moderar_miembros": false,
+        "gestionar_mensajes": false,
+        "ver_canales_privados": true,
+        "comandos_admin": false
+      },
+      "👤 Miembro": {
+        "administrar_servidor": false,
+        "administrar_canales": false,
+        "administrar_roles": false,
+        "moderar_miembros": false,
+        "gestionar_mensajes": false,
+        "ver_canales_privados": false,
+        "comandos_admin": false
+      },
+      "🌱 Recién Llegado": {
+        "administrar_servidor": false,
+        "administrar_canales": false,
+        "administrar_roles": false,
+        "moderar_miembros": false,
+        "gestionar_mensajes": false,
+        "ver_canales_privados": false,
+        "comandos_admin": false
       }
     }
+  },
+
+  "canales": {
+    "estructura": [
+      {
+        "categoria": "👑 KR EMPIRE",
+        "posicion": 0,
+        "permisos_base": {
+          "ver": true,
+          "hablar": false
+        },
+        "canales": [
+          {"nombre": "👋｜bienvenida", "tipo": "text"},
+          {"nombre": "📜｜reglas", "tipo": "text"},
+          {"nombre": "📢｜anuncios", "tipo": "text"},
+          {"nombre": "📋｜información", "tipo": "text"}
+        ]
+      },
+
+      {
+        "categoria": "💬 COMUNIDAD",
+        "posicion": 1,
+        "permisos_base": {
+          "ver": true,
+          "hablar": true
+        },
+        "canales": [
+          {"nombre": "💬｜chat-general", "tipo": "text"},
+          {"nombre": "😂｜memes", "tipo": "text"},
+          {"nombre": "🎮｜gaming", "tipo": "text"},
+          {"nombre": "📸｜multimedia", "tipo": "text"}
+        ]
+      },
+
+      {
+        "categoria": "🛡️ STAFF",
+        "posicion": 2,
+        "requiere_rango": "🛡️ Owner",
+        "permisos_base": {
+          "ver": false,
+          "hablar": false
+        },
+        "canales": [
+          {"nombre": "🔒｜staff-chat", "tipo": "text"},
+          {"nombre": "📋｜registros", "tipo": "text"},
+          {"nombre": "🎫｜tickets", "tipo": "text"}
+        ]
+      },
+
+      {
+        "categoria": "🔊 VOZ",
+        "posicion": 3,
+        "permisos_base": {
+          "ver": true,
+          "hablar": true
+        },
+        "canales": [
+          {"nombre": "🔊｜General", "tipo": "voice"},
+          {"nombre": "🎮｜Gaming", "tipo": "voice"},
+          {"nombre": "🔊｜Sala 2", "tipo": "voice"}
+        ]
+      },
+
+      {
+        "categoria": "🎮 ZONA DE JUEGOS",
+        "posicion": 4,
+        "permisos_base": {
+          "ver": false,
+          "hablar": false
+        },
+        "subcanales": {
+          "🎮 Roblox": {
+            "requiere_rango": "🎮 Roblox",
+            "canales": [
+              {"nombre": "💬｜chat-roblox", "tipo": "text"},
+              {"nombre": "🎤｜voz-roblox", "tipo": "voice"}
+            ]
+          },
+          "⛏️ Minecraft": {
+            "requiere_rango": "⛏️ Minecraft",
+            "canales": [
+              {"nombre": "💬｜chat-minecraft", "tipo": "text"},
+              {"nombre": "🎤｜voz-minecraft", "tipo": "voice"}
+            ]
+          },
+          "🔫 Free Fire": {
+            "requiere_rango": "🔫 Free Fire",
+            "canales": [
+              {"nombre": "💬｜chat-freefire", "tipo": "text"},
+              {"nombre": "🎤｜voz-freefire", "tipo": "voice"}
+            ]
+          },
+          "🚀 Valorant": {
+            "requiere_rango": "🚀 Valorant",
+            "canales": [
+              {"nombre": "💬｜chat-valorant", "tipo": "text"},
+              {"nombre": "🎤｜voz-valorant", "tipo": "voice"}
+            ]
+          }
+        }
+      }
+    ]
+  },
+
+  "niveles": {
+    "max_nivel": 10,
+    "rango_por_nivel": {
+      "1": "🌱 Recién Llegado",
+      "2": "👤 Miembro",
+      "3": "🔵 Activo",
+      "4": "⭐ Frecuente",
+      "5": "💎 Destacado",
+      "6": "🔥 Veterano",
+      "7": "🏆 Élite",
+      "8": "👑 Maestro",
+      "9": "💜 Leyenda",
+      "10": "🌌 KR Legend"
+    }
+  }
+}
