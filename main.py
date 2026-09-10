@@ -4,9 +4,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from config.config import Config
 from core.bot import setup_bot
+from core.eventos import setup_eventos
 from utils.logger import Logger
 
 bot = setup_bot()
+setup_eventos(bot)
 
 async def cargar_modulos():
     from comandos import admin, rangos
@@ -20,7 +22,6 @@ async def on_ready():
     print(f"🚀 KR EMPIRE conectado: {bot.user}")
     print("═" * 50 + "\n")
     await cargar_modulos()
-    print("✅ Sistema listo. Escribe kr!ayuda en Discord\n")
 
 Logger.info("Iniciando bot...")
 try:
