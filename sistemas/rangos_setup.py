@@ -18,7 +18,7 @@ def es_rango_del_bot(nombre):
 async def sincronizar_rangos(guild):
     Logger.info("🔍 Sincronizando rangos...")
     
-    jerarquia = cfg["rangos"]["jerarquia"]
+    jerarquia = cfg["rangos"]["jerarquia"]  # 🔝 El primero = más arriba
     colores = cfg["rangos"]["colores"]
     existentes = {rol.name: rol for rol in guild.roles}
     
@@ -26,8 +26,8 @@ async def sincronizar_rangos(guild):
     actualizados = 0
     eliminados = 0
 
-    # Crear o actualizar rangos según jerarquía
-    for nombre in reversed(jerarquia):  # Invertido para orden correcto
+    # ── PASO 1: Crear y actualizar colores ──
+    for nombre in jerarquia:
         color_hex = colores.get(nombre, "#808080")
         
         if nombre not in existentes:
@@ -48,7 +48,23 @@ async def sincronizar_rangos(guild):
                 except:
                     pass
 
-    # Eliminar rangos del bot que ya no están en config
+    # ── PASO 2: ORDENAR JERÁRQUICAMENTE ──
+    Logger.info("🔄 Organizando jerarquía...")
+    posiciones = {}
+    for indice, nombre in enumerate(jerarquia):
+        if nombre in existentes:
+            # El primero de la lista = posición más alta
+            # Usamos índice negativo para que el primero quede arriba
+            posiciones[existentes[nombre]] = len(jerarquia) - indice
+    
+    try:
+        await guild.edit_role_positions(positions=posiciones)
+        Logger.exito(f"✅ Rangos ordenados correctamente")
+    except Exception as e:
+        Logger.error(f"⚠️ No se pudo ordenar: {e}")
+        Logger.info("💡 Asegúrate de que el rol del bot esté arriba en Configuración → Roles")
+
+    # ── PASO 3: Eliminar rangos que ya no están ──
     for nombre, rol in existentes.items():
         if es_rango_del_bot(nombre) and nombre not in jerarquia:
             try:
@@ -60,5 +76,6 @@ async def sincronizar_rangos(guild):
                 Logger.error(f"❌ No se pudo eliminar {nombre}: {e}")
 
     Logger.info("════════════════════════════")
-    Logger.info(f"📊 Rangos → Creados: {creados}, Actualizados: {actualizados}, Eliminados: {eliminados}")
+    Logger.info(f"📊 Creados: {creados}, Actualizados: {actualizados}, Eliminados: {eliminados}")
+    Logger.info(f"📋 Orden: 👑 Arriba = Fundador | Abajo = Miembro ✅")
     return creados, actualizados, eliminados
