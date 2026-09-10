@@ -15,7 +15,7 @@
         "⛏️ Minecraft": {
           "requiere_rango": "⛏️ Minecraft",
           "canales": [
-            {"nombre": "💬｜chat-minecraft", "tipo", "text"},
+            {"nombre": "💬｜chat-minecraft", "tipo": "text"},
             {"nombre": "🎤｜voz-minecraft", "tipo": "voice"}
           ]
         },
@@ -23,7 +23,21 @@
           "requiere_rango": "🔫 Free Fire",
           "canales": [
             {"nombre": "💬｜chat-freefire", "tipo": "text"},
-            {"nombre": "🎤｜voz-freefire", "tipo": "voice"}
+            {"nombre": "🎤｜voz-ff", "tipo": "voice"}
+          ]
+        },
+        "🎯 Fortnite": {
+          "requiere_rango": "🎯 Fortnite",
+          "canales": [
+            {"nombre": "💬｜chat-fortnite", "tipo": "text"},
+            {"nombre": "🎤｜voz-fortnite", "tipo": "voice"}
+          ]
+        },
+        "🎲 Genshin Impact": {
+          "requiere_rango": "🎲 Genshin Impact",
+          "canales": [
+            {"nombre": "💬｜chat-genshin", "tipo": "text"},
+            {"nombre": "🎤｜voz-genshin", "tipo": "voice"}
           ]
         },
         "🚀 Valorant": {
@@ -40,13 +54,6 @@
             {"nombre": "🎤｜voz-lol", "tipo": "voice"}
           ]
         },
-        "🎲 Genshin Impact": {
-          "requiere_rango": "🎲 Genshin Impact",
-          "canales": [
-            {"nombre": "💬｜chat-genshin", "tipo": "text"},
-            {"nombre": "🎤｜voz-genshin", "tipo": "voice"}
-          ]
-        },
         "🏎️ GTA V": {
           "requiere_rango": "🏎️ GTA V",
           "canales": [
@@ -60,6 +67,41 @@
             {"nombre": "💬｜chat-brawl", "tipo": "text"},
             {"nombre": "🎤｜voz-brawl", "tipo": "voice"}
           ]
+        },
+        "🔫 PUBG": {
+          "requiere_rango": "🔫 PUBG",
+          "canales": [
+            {"nombre": "💬｜chat-pubg", "tipo": "text"},
+            {"nombre": "🎤｜voz-pubg", "tipo": "voice"}
+          ]
+        },
+        "⚽ eFootball": {
+          "requiere_rango": "⚽ eFootball",
+          "canales": [
+            {"nombre": "💬｜chat-futbol", "tipo": "text"},
+            {"nombre": "🎤｜voz-futbol", "tipo": "voice"}
+          ]
+        },
+        "🔄 Apex Legends": {
+          "requiere_rango": "🔄 Apex Legends",
+          "canales": [
+            {"nombre": "💬｜chat-apex", "tipo": "text"},
+            {"nombre": "🎤｜voz-apex", "tipo": "voice"}
+          ]
+        },
+        "🐉 Elden Ring": {
+          "requiere_rango": "🐉 Elden Ring",
+          "canales": [
+            {"nombre": "💬｜chat-eldenring", "tipo": "text"},
+            {"nombre": "🎤｜voz-eldenring", "tipo": "voice"}
+          ]
+        },
+        "🏹 Overwatch": {
+          "requiere_rango": "🏹 Overwatch",
+          "canales": [
+            {"nombre": "💬｜chat-overwatch", "tipo": "text"},
+            {"nombre": "🎤｜voz-overwatch", "tipo": "voice"}
+          ]
         }
       }
-    },
+    }
