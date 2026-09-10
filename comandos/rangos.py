@@ -8,11 +8,10 @@ divisiones = cfg["divisiones"]
 async def setup(bot):
     @bot.command(name="rango_lista")
     async def rango_lista(ctx):
-        texto = "**🏰 KR EMPIRE — LISTA DE RANGOS**\n\n"
+        # Enviamos cada división por separado
         for div_nombre, data in divisiones.items():
             auto = " ✅ [ELEGIBLE]" if data.get("autoasignable", False) else " 🔒 [SOLO EQUIPO]"
-            texto += f"═══ {div_nombre} {auto} ═══\n"
+            texto = f"**═══ {div_nombre} {auto} ═══**\n"
             for nombre in data["rangos"]:
-                texto += f"  ├ {nombre}\n"
-            texto += "\n"
-        await ctx.send(texto)
+                texto += f"├ {nombre}\n"
+            await ctx.send(texto)
