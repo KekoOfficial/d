@@ -1,29 +1,215 @@
 {
   "prefijo": "kr!",
   "idioma_predeterminado": "es",
-  "rangos_base": {
-    "💜 Owner": "#9932CC",
-    "🛡️ Admin-Discord": "#4B0082",
-    "🎮 Admin-Videojuegos": "#E63946",
-    "⚖️ Moderador": "#4169E1",
-    "📚 Staff": "#708090",
-    "⭐ Youtuber": "#FF0000",
-    "✅ Verificado": "#00FF00",
-    "👤 Miembro": "#808080"
+
+  "divisiones": {
+    "👑 CREACIÓN Y FUNDACIÓN": {
+      "descripcion": "Fundadores y creadores de KR Empire",
+      "rangos": {
+        "👑 Fundador": "#FFD700",
+        "🏆 Creador": "#FFB800",
+        "💜 Co-Fundador": "#C084FC"
+      }
+    },
+
+    "🛡️ ADMINISTRACIÓN": {
+      "descripcion": "Máxima autoridad del servidor",
+      "rangos": {
+        "🛡️ Owner": "#9932CC",
+        "🏛️ Director": "#D4AF37",
+        "🧠 Coordinador": "#4B0082",
+        "🏛️ Supervisor": "#6A0D91",
+        "🔐 Seguridad": "#DC143C",
+        "🤖 Admin de Bots": "#4169E1"
+      }
+    },
+
+    "⚙️ EQUIPO PROFESIONAL": {
+      "descripcion": "Staff que mantiene y apoya la comunidad",
+      "rangos": {
+        "⚖️ Moderador Senior": "#1E40AF",
+        "🛡️ Moderador": "#4169E1",
+        "🔨 Moderador Junior": "#60A5FA",
+        "🚨 Anti-Raid": "#EF4444",
+        "🕵️ Investigador": "#8B5CF6",
+        "🎫 Atención": "#22C55E",
+        "🧰 Soporte Técnico": "#06B6D4",
+        "📣 Community Manager": "#F59E0B",
+        "🎉 Organizador": "#EC4899",
+        "🎤 Host de Eventos": "#F97316"
+      }
+    },
+
+    "⭐ DISTINCIONES": {
+      "descripcion": "Reconocimientos especiales",
+      "rangos": {
+        "💎 VIP": "#00D9FF",
+        "🏅 Veterano": "#CD7F32",
+        "🌟 Leyenda": "#FFD700",
+        "🔥 Miembro Activo": "#FF6B35",
+        "💜 Miembro OG": "#C084FC",
+        "🏆 Campeón de Evento": "#FFA500",
+        "🎖️ Miembro Honorífico": "#EAB308",
+        "⭐ Creador de Contenido": "#FF0000",
+        "✅ Verificado": "#10B981"
+      }
+    },
+
+    "📈 NIVELES": {
+      "descripcion": "Progreso por actividad en la comunidad",
+      "rangos": {
+        "🌱 Recién Llegado": "#9CA3AF",
+        "👤 Miembro": "#6B7280",
+        "🔵 Activo": "#3B82F6",
+        "⭐ Frecuente": "#F59E0B",
+        "💎 Destacado": "#00D9FF",
+        "🔥 Veterano": "#FF4655",
+        "🏆 Élite": "#D4AF37",
+        "👑 Maestro": "#9932CC",
+        "💜 Leyenda": "#C084FC",
+        "🌌 KR Legend": "#FFD700"
+      }
+    },
+
+    "🎮 JUEGOS": {
+      "descripcion": "Qué juegos juegas",
+      "autoasignable": true,
+      "rangos": {
+        "🎮 Roblox": "#E63946",
+        "⛏️ Minecraft": "#00AF54",
+        "🔫 Free Fire": "#FF6B35",
+        "🎯 Fortnite": "#009FFF",
+        "🎲 Genshin Impact": "#A855F7",
+        "🔫 PUBG": "#22C55E",
+        "🏎️ GTA V": "#FBBF24",
+        "⚽ eFootball": "#00C853",
+        "🚀 Valorant": "#FF4655",
+        "⚔️ League of Legends": "#C89B3C",
+        "🔄 Apex Legends": "#FF4500",
+        "🐉 Elden Ring": "#FFD700",
+        "🏹 Overwatch": "#F99321",
+        "⚔️ Brawl Stars": "#FF9800"
+      }
+    },
+
+    "🎭 ESTILO": {
+      "descripcion": "Cómo disfrutas jugar y convivir",
+      "autoasignable": true,
+      "rangos": {
+        "🎭 Rolplayer": "#9C27B0",
+        "🏆 Competitivo": "#FF5722",
+        "☁️ Casual": "#03A9F4",
+        "🎨 Creativo": "#E91E63",
+        "📺 Espectador": "#607D8B"
+      }
+    },
+
+    "👤 IDENTIDAD": {
+      "descripcion": "Tu identidad (opcional)",
+      "autoasignable": true,
+      "rangos": {
+        "👨 Hombre": "#3B82F6",
+        "👩 Mujer": "#EC4899",
+        "🧑 No binario": "#A855F7",
+        "🌈 Prefiero no decirlo": "#78716C"
+      }
+    },
+
+    "🌐 IDIOMAS": {
+      "descripcion": "Qué idiomas hablas",
+      "autoasignable": true,
+      "rangos": {
+        "🇪🇸 Español": "#FF0000",
+        "🇺🇸 English": "#0000FF",
+        "🇧🇷 Português": "#009C3B",
+        "🇸🇦 العربية": "#006600"
+      }
+    },
+
+    "🎨 INTERESES": {
+      "descripcion": "Lo que te apasiona",
+      "autoasignable": true,
+      "rangos": {
+        "💻 Programación": "#00ADD8",
+        "🤖 Inteligencia Artificial": "#7C3AED",
+        "🎮 Videojuegos": "#10B981",
+        "🎬 Películas": "#EF4444",
+        "📺 Series": "#F59E0B",
+        "🎵 Música": "#EC4899",
+        "🎤 K-Pop": "#FF00C8",
+        "🎨 Arte": "#F97316",
+        "📚 Libros": "#06B6D4",
+        "⚽ Deportes": "#22C55E",
+        "🏎️ Autos": "#6366F1",
+        "📷 Fotografía": "#84CC16"
+      }
+    },
+
+    "📱 PLATAFORMAS": {
+      "descripcion": "Desde dónde te conectas",
+      "autoasignable": true,
+      "rangos": {
+        "📱 Android": "#3DDC84",
+        "🍎 iOS": "#000000",
+        "💻 PC": "#0078D7",
+        "🎮 PlayStation": "#003087",
+        "🟢 Xbox": "#107C10",
+        "🔵 Nintendo": "#E60012"
+      }
+    },
+
+    "🕐 ZONA HORARIA": {
+      "descripcion": "Tu horario para organizar eventos",
+      "autoasignable": true,
+      "rangos": {
+        "🌍 UTC-3 🇦🇷🇧🇴🇧🇷": "#FFCC00",
+        "🌎 UTC-4 🇻🇪🇨🇱": "#FF9900",
+        "🌏 UTC+1 🇪🇸": "#FF0000",
+        "🌐 UTC+0 🇬🇧🇵🇹": "#0099CC"
+      }
+    },
+
+    "🏆 ACTIVIDAD": {
+      "descripcion": "Qué tan seguido participas",
+      "autoasignable": true,
+      "rangos": {
+        "🟢 Muy Activo": "#22C55E",
+        "🔵 Activo": "#3B82F6",
+        "🟡 Casual": "#F59E0B",
+        "⚪ Inactivo": "#9CA3AF",
+        "💤 Ausente": "#4B5563"
+      }
+    },
+
+    "🔔 NOTIFICACIONES": {
+      "descripcion": "Qué avisos quieres recibir",
+      "autoasignable": true,
+      "rangos": {
+        "📢 Anuncios": "#F59E0B",
+        "🎉 Eventos": "#EC4899",
+        "🎮 Nuevos Juegos": "#10B981",
+        "🏆 Torneos": "#D4AF37",
+        "📺 Contenido Nuevo": "#3B82F6",
+        "🔴 Avisos Importantes": "#EF4444"
+      }
+    }
   },
-  "rangos_juegos": {
-    "🎮 Roblox": "#E63946",
-    "⛏️ Minecraft": "#00AF54",
-    "🔫 Free Fire": "#FF6B35"
-  },
-  "idiomas": {
-    "🇪🇸 Español": "#FF0000",
-    "🇺🇸 English": "#0000FF",
-    "🇸🇦 العربية": "#008000"
-  },
+
   "niveles": {
     "max_nivel": 10,
     "dias_para_subir": 90,
-    "xp_por_mensaje": 5
+    "xp_por_mensaje": 5,
+    "rango_por_nivel": {
+      "1": "🌱 Recién Llegado",
+      "2": "👤 Miembro",
+      "3": "🔵 Activo",
+      "4": "⭐ Frecuente",
+      "5": "💎 Destacado",
+      "6": "🔥 Veterano",
+      "7": "🏆 Élite",
+      "8": "👑 Maestro",
+      "9": "💜 Leyenda",
+      "10": "🌌 KR Legend"
+    }
   }
 }
