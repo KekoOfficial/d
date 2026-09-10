@@ -7,20 +7,15 @@ class Eventos:
         self.bot = bot
     
     async def on_ready(self):
-        print("\n" + "═" * 60)
-        print("🚀  KR EMPIRE — SISTEMA INICIADO")
-        print(f"🤖  Conectado como: {self.bot.user}")
-        print(f"🌐  Servidores: {len(self.bot.guilds)}")
-        print(f"⏰  Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
-        print("═" * 60 + "\n")
+        print("\n" + "═" * 50)
+        print(f"🚀 KR EMPIRE conectado: {self.bot.user}")
+        print("═" * 50 + "\n")
         
-        # 🧠 SINCRONIZACIÓN AUTOMÁTICA AL ENCENDER
         for guild in self.bot.guilds:
-            Logger.info(f"🔍 Sincronizando en: {guild.name}")
+            Logger.info(f"🔍 Servidor: {guild.name}")
             await sincronizar_rangos(guild)
         
-        Logger.exito("✅ ¡Todo actualizado automáticamente!")
-        print("\n✅ Sistema listo\n")
+        Logger.exito("✅ Todo sincronizado\n")
 
 def setup_eventos(bot):
     instancia = Eventos(bot)
