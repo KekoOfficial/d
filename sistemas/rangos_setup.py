@@ -15,11 +15,11 @@ def es_rango_del_bot(nombre):
     datos = BaseDatos.leer("bot_rangos.json", {"creados_por_bot": []})
     return nombre in datos["creados_por_bot"]
 
-# 🛡️ Convertir permisos del JSON a formato de Discord
+# 🛡️ Convertir permisos del JSON a formato Discord
 def obtener_objeto_permisos(permiso_config):
     permisos = discord.Permissions()
     
-    permisos_dict = {
+    mapa = {
         "administrar_servidor": "manage_guild",
         "administrar_canales": "manage_channels",
         "administrar_roles": "manage_roles",
@@ -31,14 +31,15 @@ def obtener_objeto_permisos(permiso_config):
         "ban_miembros": "ban_members",
         "expulsar_miembros": "kick_members",
         "mencionar_todos": "mention_everyone",
-        "gestionar_emojis": "manage_emojis"
+        "gestionar_emojis": "manage_emojis",
+        "transmitir_en_vivo": "stream"
     }
     
     for clave, valor in permiso_config.items():
-        if clave in permisos_dict and valor:
-            setattr(permisos, permisos_dict[clave], True)
+        if clave in mapa and valor:
+            setattr(permisos, mapa[clave], True)
     
-    # ✅ Por defecto TODOS tienen permiso de ver canales si no se especifica lo contrario
+    # ✅ Por defecto todos pueden ver canales
     if "ver_canales" not in permiso_config:
         permisos.view_channel = True
     
@@ -49,14 +50,14 @@ async def sincronizar_rangos(guild):
     
     jerarquia = cfg["rangos"]["jerarquia"]
     colores = cfg["rangos"]["colores"]
-    permisos_rangos = cfg["rangos"].get("permisos_por_rango", {})
+    permisos_rangos = cfg.get("permisos_rangos", {})  # ✅ Leer desde ubicación correcta
     existentes = {rol.name: rol for rol in guild.roles}
     
     creados = 0
     actualizados = 0
     eliminados = 0
 
-    # ── Crear o actualizar cada rango con sus permisos ──
+    # ── Crear o restaurar cada rango con sus permisos ──
     for nombre in jerarquia:
         color_hex = colores.get(nombre, "#808080")
         permisos_obj = obtener_objeto_permisos(permisos_rangos.get(nombre, {}))
@@ -104,6 +105,7 @@ async def sincronizar_rangos(guild):
         Logger.exito(f"✅ Rangos ordenados")
     except Exception as e:
         Logger.warning(f"⚠️ No se pudo ordenar: {e}")
+        Logger.info("💡 Asegúrate de que el rol del bot esté arriba en Configuración → Roles")
 
     # ── Eliminar solo lo que ya NO está en config ──
     for nombre, rol in existentes.items():
