@@ -6,7 +6,6 @@ from database.database import BaseDatos
 cfg = cargar_config()
 divisiones = cfg["divisiones"]
 
-# Obtiene TODOS los rangos que DEBERÍAN existir según config
 def obtener_rangos_esperados():
     esperados = {}
     for div_nombre, data in divisiones.items():
@@ -14,18 +13,16 @@ def obtener_rangos_esperados():
             esperados[nombre] = color
     return esperados
 
-# Ejecuta la sincronización completa
 async def sincronizar_rangos(guild):
-    Logger.info("🔄 Iniciando sincronización automática de rangos...")
+    Logger.info("🔄 Revisando rangos...")
     
     esperados = obtener_rangos_esperados()
     existentes = {rol.name: rol for rol in guild.roles}
     
     creados = 0
-    actualizados = 0
     eliminados = 0
 
-    # ── PASO 1: Crear o actualizar rangos que deben existir ──
+    # Crear solo lo que FALTA
     for nombre, color in esperados.items():
         if nombre not in existentes:
             try:
@@ -36,31 +33,19 @@ async def sincronizar_rangos(guild):
             except Exception as e:
                 Logger.error(f"❌ No se pudo crear {nombre}: {e}")
         else:
-            # Si ya existe, verifica que el color sea correcto
-            rol = existentes[nombre]
-            if str(rol.color) != color:
-                try:
-                    await rol.edit(color=int(color.lstrip('#'), 16))
-                    Logger.info(f"🔄 Color actualizado: {nombre}")
-                    actualizados += 1
-                except:
-                    pass
+            Logger.info(f"⏭️ Ya existe: {nombre} — no se toca")
 
-    # ── PASO 2: Eliminar rangos del bot que ya no están en config ──
+    # Eliminar solo lo que EL BOT CREÓ y ya no está en config
     for nombre, rol in existentes.items():
         if BaseDatos.es_rango_del_bot(nombre) and nombre not in esperados:
             try:
                 if rol < guild.me.top_role:
                     await rol.delete()
-                    Logger.exito(f"🗑️ Eliminado: {nombre} (ya no está en config)")
+                    Logger.exito(f"🗑️ Eliminado: {nombre}")
                     eliminados += 1
             except Exception as e:
                 Logger.error(f"❌ No se pudo eliminar {nombre}: {e}")
 
-    # ── Resumen ──
-    Logger.info("══════════════════════════════════")
-    Logger.info(f"📊 SINCRONIZACIÓN COMPLETA")
-    Logger.info(f"   ✅ Creados: {creados}")
-    Logger.info(f"   🔄 Actualizados: {actualizados}")
-    Logger.info(f"   🗑️ Eliminados: {eliminados}")
-    Logger.info("══════════════════════════════════")
+    Logger.info("════════════════════════════")
+    Logger.info(f"📊 Resumen: Creados={creados}, Eliminados={eliminados}")
+    Logger.info("✅ Revisión terminada\n")
